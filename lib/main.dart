@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smart_movie/screen/Splash_Screen_page.dart';
+import 'package:smart_movie/view/Splash_Screen_page.dart';
 
 void main() {
   runApp(MyApp());
