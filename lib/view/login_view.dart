@@ -1,6 +1,17 @@
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  // Variable to track password visibility
+  bool _obscureText = true;
+
+  // TextEditingController for the password field
+  final TextEditingController _passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,6 +49,8 @@ class LoginPage extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             TextField(
+              controller: _passwordController,
+              obscureText: _obscureText,
               decoration: InputDecoration(
                 filled: true,
                 fillColor: Colors.grey[900],
@@ -46,8 +59,19 @@ class LoginPage extends StatelessWidget {
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    _obscureText ? Icons.visibility_off : Icons.visibility,
+                    color: Colors.grey,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      _obscureText =
+                          !_obscureText; // Toggle the password visibility
+                    });
+                  },
+                ),
               ),
-              obscureText: true,
               style: const TextStyle(color: Colors.white),
             ),
             const SizedBox(height: 30),
@@ -62,6 +86,29 @@ class LoginPage extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 100, vertical: 15),
               ),
               child: const Text('Login'),
+            ),
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  "Don't have an account? ",
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/signup');
+                  },
+                  child: const Text(
+                    "Sign Up",
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
