@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smart_movie/view/login_view.dart';
-// Import the login page
+import 'package:smart_movie/view/login_view.dart'; // Import LoginPage
 
 class SplashScreenPage extends StatelessWidget {
   @override
@@ -9,7 +8,7 @@ class SplashScreenPage extends StatelessWidget {
       backgroundColor: Colors.black, // Set background to black
       appBar: AppBar(
         title: const Text('Smart Movie Recommendation'),
-        backgroundColor: Colors.white, // AppBar background to black
+        backgroundColor: Colors.white, // AppBar background to white
         elevation: 0, // Remove shadow for a cleaner look
       ),
       body: Center(
