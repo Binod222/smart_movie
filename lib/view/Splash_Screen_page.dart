@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'login_page.dart'; // Import the login page
+import 'package:smart_movie/view/login_view.dart';
+// Import the login page
 
 class SplashScreenPage extends StatelessWidget {
   @override
@@ -7,7 +8,7 @@ class SplashScreenPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black, // Set background to black
       appBar: AppBar(
-        title: Text('Smart Movie Recommendation'),
+        title: const Text('Smart Movie Recommendation'),
         backgroundColor: Colors.white, // AppBar background to black
         elevation: 0, // Remove shadow for a cleaner look
       ),
@@ -19,7 +20,7 @@ class SplashScreenPage extends StatelessWidget {
               'assets/images/logo.png', // Path to your logo image
               height: 150,
             ),
-            SizedBox(height: 50),
+            const SizedBox(height: 50),
             ElevatedButton(
               onPressed: () {
                 // Navigate to the Login Page
@@ -31,9 +32,10 @@ class SplashScreenPage extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.grey[800],
                 foregroundColor: Colors.white,
-                padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
               ),
-              child: Text('Get Started'),
+              child: const Text('Get Started'),
             ),
           ],
         ),
