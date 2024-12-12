@@ -1,42 +1,44 @@
 import 'package:flutter/material.dart';
-import 'package:smart_movie/view/login_view.dart'; // Import LoginPage
+import 'package:smart_movie/view/login_view.dart';
 
 class SplashScreenPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // Trigger navigation after a 2-second delay
+    Future.delayed(const Duration(seconds: 2), () {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => LoginPage(), // Replace with your login page
+        ),
+      );
+    });
+
     return Scaffold(
-      backgroundColor: Colors.black, // Set background to black
-      appBar: AppBar(
-        title: const Text('Smart Movie Recommendation'),
-        backgroundColor: Colors.white, // AppBar background to white
-        elevation: 0, // Remove shadow for a cleaner look
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              'assets/images/logo.png', // Path to your logo image
-              height: 150,
-            ),
-            const SizedBox(height: 50),
-            ElevatedButton(
-              onPressed: () {
-                // Navigate to the Login Page
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => LoginPage()),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.grey[800],
-                foregroundColor: Colors.white,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+      body: Container(
+        decoration: const BoxDecoration(
+          // Gradient background
+          gradient: LinearGradient(
+            colors: [
+              Colors.blue, // Start color
+              Colors.purple, // End color
+            ],
+            begin: Alignment.topCenter, // Gradient starts at the top
+            end: Alignment.bottomCenter, // Gradient ends at the bottom
+          ),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                'assets/images/logo.png', // Path to your logo image
+                height: 150,
               ),
-              child: const Text('Get Started'),
-            ),
-          ],
+              const SizedBox(height: 50),
+              // Add more widgets here if needed
+            ],
+          ),
         ),
       ),
     );
