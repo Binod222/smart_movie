@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smart_movie/view/login_view.dart';
+import 'package:smart_movie/view/onbarding_screen.dart';
 
 class SplashScreenPage extends StatelessWidget {
   @override
@@ -9,7 +9,8 @@ class SplashScreenPage extends StatelessWidget {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => LoginPage(), // Replace with your login page
+          builder: (context) =>
+              OnboardingScreen(), // Replace with your login page
         ),
       );
     });
