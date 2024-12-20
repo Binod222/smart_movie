@@ -1,18 +1,32 @@
 import 'package:flutter/material.dart';
 
 class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+  HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black, // Netflix-style dark background
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+      backgroundColor: Colors.black, // Dark background
+      appBar: AppBar(
+        backgroundColor: Colors.transparent, // Set the AppBar to transparent
+        elevation: 0, // Remove shadow for a clean look
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(0), // Remove padding for no space
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 40), // Top padding
+            // Scrollable image (adjusted to full width and smaller height)
+            Image.asset(
+              'assets/images/login_bg.jpg', // Replace with your image path
+              width: double.infinity,
+              height: 220, // Set a fixed height for the image
+              fit: BoxFit
+                  .cover, // Ensure the image is stretched but maintains aspect ratio
+            ),
+            const SizedBox(
+                height: 14), // Space between the image and the search bar
+
             // Search bar
             TextFormField(
               decoration: InputDecoration(
@@ -28,7 +42,9 @@ class HomeView extends StatelessWidget {
               ),
               style: const TextStyle(color: Colors.white),
             ),
-            const SizedBox(height: 30),
+            const SizedBox(
+                height:
+                    30), // Space between the search bar and "Trending Now" text
 
             // Category: Trending Now
             const Text(
@@ -40,13 +56,13 @@ class HomeView extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-            _buildHorizontalList(),
+            _buildHorizontalList(_trendingImages),
 
             const SizedBox(height: 30),
 
             // Category: Popular on Netflix
             const Text(
-              "Popular on Netflix",
+              "Popular",
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -54,7 +70,7 @@ class HomeView extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-            _buildHorizontalList(),
+            _buildHorizontalList(_popularImages),
 
             const SizedBox(height: 30),
 
@@ -68,29 +84,56 @@ class HomeView extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-            _buildHorizontalList(),
+            _buildHorizontalList(_newReleasesImages),
+
+            const SizedBox(height: 30),
           ],
         ),
       ),
     );
   }
 
+  // Lists of image paths for different categories
+  final List<String> _trendingImages = [
+    "assets/images/movie2.jpg",
+    "assets/images/movie2.jpg",
+    "assets/images/movie1.jpg",
+    "assets/images/movie3.jpg",
+    "assets/images/movie4.jpeg",
+  ];
+
+  final List<String> _popularImages = [
+    "assets/images/movie7.jpeg",
+    "assets/images/movie2.jpg",
+    "assets/images/movie8.jpg",
+    "assets/images/movie4.jpeg",
+    "assets/images/movie5.jpeg",
+  ];
+
+  final List<String> _newReleasesImages = [
+    "assets/images/movie1.jpg",
+    "assets/images/movie4.jpeg",
+    "assets/images/movie5.jpeg",
+    "assets/images/movie6.jpg",
+    "assets/images/movie7.jpeg",
+  ];
+
   // Widget for a horizontal list of movie cards
-  Widget _buildHorizontalList() {
+  Widget _buildHorizontalList(List<String> imagePaths) {
     return SizedBox(
       height: 150,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: 10, // Example count
+        itemCount: imagePaths.length,
         itemBuilder: (context, index) {
-          return _buildMovieCard("Movie $index", "assets/movie_poster.png");
+          return _buildMovieCard(imagePaths[index]);
         },
       ),
     );
   }
 
   // Widget for a movie card
-  Widget _buildMovieCard(String title, String imagePath) {
+  Widget _buildMovieCard(String imagePath) {
     return Container(
       width: 100,
       margin: const EdgeInsets.only(right: 16),
@@ -105,32 +148,14 @@ class HomeView extends StatelessWidget {
           ),
         ],
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Movie poster image
-          ClipRRect(
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(8)),
-            child: Image.asset(
-              imagePath,
-              height: 100,
-              width: double.infinity,
-              fit: BoxFit.cover,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(4.0),
-            child: Text(
-              title,
-              style: const TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w600,
-                color: Colors.white,
-              ),
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
-        ],
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(8),
+        child: Image.asset(
+          imagePath,
+          height: 150,
+          width: double.infinity,
+          fit: BoxFit.cover,
+        ),
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smart_movie/view/botton_navigation_bar/about_view.dart';
+import 'package:smart_movie/view/botton_navigation_bar/filter_view.dart';
 import 'package:smart_movie/view/botton_navigation_bar/home_view.dart';
 import 'package:smart_movie/view/botton_navigation_bar/profile_view.dart';
 
@@ -14,8 +15,9 @@ class _BottomNavigationViewState extends State<BottomNavigationView> {
   int _selectedIndex = 0;
 
   List<Widget> lstBottomScreen = [
-    const HomeView(),
+    HomeView(),
     const AboutView(),
+    const FilterView(),
     const ProfileView(),
   ];
 
@@ -28,15 +30,19 @@ class _BottomNavigationViewState extends State<BottomNavigationView> {
       body: lstBottomScreen[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.yellow,
+        backgroundColor: Colors.blue,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.circle),
+            icon: Icon(Icons.info),
             label: 'About',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.filter),
+            label: 'Filter',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
@@ -44,6 +50,9 @@ class _BottomNavigationViewState extends State<BottomNavigationView> {
           ),
         ],
         currentIndex: _selectedIndex,
+        selectedItemColor: Colors.white, // Set selected icon color to white
+        unselectedItemColor:
+            Colors.white54, // Set unselected icon color to a lighter white
         onTap: (index) {
           setState(() {
             _selectedIndex = index;
