@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:smart_movie/view/onbarding_screen.dart';
 
 class SplashScreenPage extends StatelessWidget {
+  const SplashScreenPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     // Trigger navigation after a 2-second delay
@@ -10,7 +12,7 @@ class SplashScreenPage extends StatelessWidget {
         context,
         MaterialPageRoute(
           builder: (context) =>
-              OnboardingScreen(), // Replace with your login page
+              const OnboardingScreen(), // Replace with your login page
         ),
       );
     });

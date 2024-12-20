@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
+
   @override
   _SignUpPageState createState() => _SignUpPageState();
 }
@@ -72,11 +74,11 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                       errorBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(color: Colors.red),
+                        borderSide: const BorderSide(color: Colors.red),
                       ),
                       focusedErrorBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(color: Colors.red),
+                        borderSide: const BorderSide(color: Colors.red),
                       ),
                     ),
                     style: const TextStyle(color: Colors.white),
@@ -101,11 +103,11 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                       errorBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(color: Colors.red),
+                        borderSide: const BorderSide(color: Colors.red),
                       ),
                       focusedErrorBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(color: Colors.red),
+                        borderSide: const BorderSide(color: Colors.red),
                       ),
                     ),
                     style: const TextStyle(color: Colors.white),

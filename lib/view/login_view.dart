@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   final String dummyEmail = "binod@gmail.com";
   final String dummyPassword = "pass123";
@@ -61,9 +63,7 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
-                child: Image.asset("assets/images/logo.png"),
-              ),
+              Image.asset("assets/images/logo.png"),
               const SizedBox(height: 30),
               TextField(
                 controller: _emailController,
