@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:smart_movie/view/botton_navigation_bar/about_view.dart';
-import 'package:smart_movie/view/botton_navigation_bar/filter_view.dart';
-import 'package:smart_movie/view/botton_navigation_bar/home_view.dart';
-import 'package:smart_movie/view/botton_navigation_bar/profile_view.dart';
+import 'package:smart_movie/features/dashboard/presentation/views/about_screen.dart';
+import 'package:smart_movie/features/dashboard/presentation/views/filter_screen.dart';
+import 'package:smart_movie/features/dashboard/presentation/views/home_screen.dart';
+import 'package:smart_movie/features/dashboard/presentation/views/profile_screen.dart';
 
 class BottomNavigationView extends StatefulWidget {
   const BottomNavigationView({super.key});
@@ -18,7 +18,7 @@ class _BottomNavigationViewState extends State<BottomNavigationView> {
     HomeView(),
     const AboutView(),
     const FilterView(),
-    const ProfileView(),
+    const ProfileScreen(),
   ];
 
   @override

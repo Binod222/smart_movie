@@ -158,7 +158,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     obscureText: _obscureText,
                     decoration: InputDecoration(
                       filled: true,
-                      fillColor: Colors.transparent,
+                      fillColor: Colors.transparent,       
                       hintText: 'Create Password',
                       hintStyle: const TextStyle(color: Colors.white),
                       border: OutlineInputBorder(
