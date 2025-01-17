@@ -6,4 +6,6 @@ class AppTheme {
         primaryColor: AppColors.primary,
         scaffoldBackgroundColor: AppColors.background,
       );
+
+  static getApplicationTheme({required bool isDarkMode}) {}
 }

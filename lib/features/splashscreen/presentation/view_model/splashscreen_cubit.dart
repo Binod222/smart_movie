@@ -8,9 +8,10 @@
 // }
 
 import 'package:bloc/bloc.dart';
+import 'package:smart_movie/features/auth/presentation/view_model/login/login_bloc.dart';
 
 class SplashCubit extends Cubit<bool> {
-  SplashCubit() : super(false);
+  SplashCubit(LoginBloc loginBloc) : super(false);
 
   void navigateToNextScreen() {
     // Emit true after a delay to simulate loading or initialization

@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:smart_movie/features/dashboard/presentation/views/about_screen.dart';
-import 'package:smart_movie/features/dashboard/presentation/views/filter_screen.dart';
-import 'package:smart_movie/features/dashboard/presentation/views/home_screen.dart';
-import 'package:smart_movie/features/dashboard/presentation/views/profile_screen.dart';
+import 'package:smart_movie/features/aboutscreen/presentation/view/about_screen.dart';
+import 'package:smart_movie/features/filterscreen/presentation/view/filter_screen.dart';
+import 'package:smart_movie/features/profilescreen/presentation/views/profile_screen.dart';
 
-class BottomNavigationView extends StatefulWidget {
-  const BottomNavigationView({super.key});
+class HomeView extends StatefulWidget {
+  const HomeView({super.key});
 
   @override
-  State<BottomNavigationView> createState() => _BottomNavigationViewState();
+  State<HomeView> createState() => _BottomNavigationViewState();
 }
 
-class _BottomNavigationViewState extends State<BottomNavigationView> {
+class _BottomNavigationViewState extends State<HomeView> {
   int _selectedIndex = 0;
 
   List<Widget> lstBottomScreen = [

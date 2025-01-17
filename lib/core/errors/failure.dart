@@ -1,12 +1,26 @@
-abstract class Failure {
+class Failure {
   final String message;
-  const Failure(this.message);
+  final int? statusCode;
+
+  Failure({
+    required this.message,
+    this.statusCode,
+  });
+  @override
+  String toString() => 'Failure (message: $message, statusCode: $statusCode)';
 }
 
-class ServerFailure extends Failure {
-  const ServerFailure(super.message);
+class LocalDatabaseFailure extends Failure {
+  LocalDatabaseFailure({
+    required super.message,
+  });
 }
 
-class CacheFailure extends Failure {
-  const CacheFailure(super.message);
+class ApiFailure extends Failure {
+  @override
+  final int statusCode;
+  ApiFailure({
+    required super.message,
+    required this.statusCode,
+  });
 }
