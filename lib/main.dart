@@ -5,11 +5,9 @@ import 'package:smart_movie/core/network/hive_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // initialized the hive database
-  await HiveService.init();
-// Initialize the dependencies
+
+  await HiveService().init();
+
   await initDependencies();
-  runApp(
-    const App(),
-  );
+  runApp(const MyApp());
 }

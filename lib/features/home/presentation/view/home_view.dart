@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:smart_movie/features/aboutscreen/presentation/view/about_screen.dart';
-import 'package:smart_movie/features/filterscreen/presentation/view/filter_screen.dart';
-import 'package:smart_movie/features/profilescreen/presentation/views/profile_screen.dart';
-
+import 'package:smart_movie/features/home/presentation/view/bottom_view/about_us_view.dart';
+import 'package:smart_movie/features/home/presentation/view/bottom_view/filter_view.dart';
+import 'package:smart_movie/features/home/presentation/view/bottom_view/profile_view.dart';
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
 
@@ -17,7 +16,7 @@ class _BottomNavigationViewState extends State<HomeView> {
     HomeView(),
     const AboutView(),
     const FilterView(),
-    const ProfileScreen(),
+    const ProfilePage(),
   ];
 
   @override

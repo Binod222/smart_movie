@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:smart_movie/core/errors/failure.dart';
+import 'package:smart_movie/core/error/failure.dart';
 
 abstract interface class UsecaseWithParams<SuccessType, Params> {
   Future<Either<Failure, SuccessType>> call(Params params);

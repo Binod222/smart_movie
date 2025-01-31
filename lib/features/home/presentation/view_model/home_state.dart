@@ -1,5 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:smart_movie/features/home/presentation/view/bottom_view/about_us_view.dart';
+import 'package:smart_movie/features/home/presentation/view/bottom_view/home_view.dart';
+import 'package:smart_movie/features/home/presentation/view/bottom_view/profile_view.dart';
 
 class HomeState extends Equatable {
   final int selectedIndex;
@@ -12,21 +15,15 @@ class HomeState extends Equatable {
 
   // Initial state
   static HomeState initial() {
-    return const HomeState(
+    return HomeState(
       selectedIndex: 0,
       views: [
-        Center(
-          child: Text('Home'),
+        HomeView(),
+        const Center(
+          child: Text('Tickets'),
         ),
-        Center(
-          child: Text('About'),
-        ),
-        Center(
-          child: Text('Filter'),
-        ),
-        Center(
-          child: Text('Profile'),
-        ),
+        AboutView(),
+        const ProfilePage(),
       ],
     );
   }
@@ -34,7 +31,6 @@ class HomeState extends Equatable {
   HomeState copyWith({
     int? selectedIndex,
     List<Widget>? views,
-    required bool isDarkTheme,
   }) {
     return HomeState(
       selectedIndex: selectedIndex ?? this.selectedIndex,
