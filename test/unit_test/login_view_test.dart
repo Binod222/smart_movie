@@ -45,7 +45,7 @@ void main() {
 
       // Enter valid email and password
       await tester.enterText(
-          find.byType(TextFormField).at(0), 'nirajan@gmail.com');
+          find.byType(TextFormField).at(0), 'binod@gmail.com');
       await tester.enterText(find.byType(TextFormField).at(1), 'password123');
 
       // Tap the login button

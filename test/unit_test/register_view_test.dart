@@ -44,13 +44,13 @@ void main() {
     );
 
     // Enter text into the input fields
-    await tester.enterText(find.byType(TextFormField).at(0), 'Nirajan Mahato');
-    await tester.enterText(find.byType(TextFormField).at(1), 'nirajan@gmail.com');
+    await tester.enterText(find.byType(TextFormField).at(0), 'Binod khadka');
+    await tester.enterText(find.byType(TextFormField).at(1), 'binod@gmail.com');
     await tester.enterText(find.byType(TextFormField).at(2), 'password123');
 
     // Verify that the entered text appears in the widgets
     expect(find.text('Binod Khadka'), findsOneWidget);
     expect(find.text('binod@gmail.com'), findsOneWidget);
-    expect(find.text('password1234'), findsOneWidget);
+    expect(find.text('password123'), findsOneWidget);
   });
 }

@@ -50,7 +50,7 @@ class UserRemoteDataSource implements IUserDataSource {
         throw Exception(response.statusMessage);
       }
     } on DioException catch (e) {
-      throw Exception(e);
+      throw Exception(e); 
     } catch (e) {
       throw Exception(e);
     }
