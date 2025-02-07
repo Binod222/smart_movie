@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_movie/core/common/snackbar/my_snackbar.dart';
 import 'package:smart_movie/features/auth/domain/use_case/login_usecase.dart';
 import 'package:smart_movie/features/auth/presentation/view_model/signup/register_bloc.dart';
-import 'package:smart_movie/features/home/presentation/view/bottom_view/home_view.dart';
+import 'package:smart_movie/features/home/presentation/view/home_view.dart';
 import 'package:smart_movie/features/home/presentation/view_model/home_cubit.dart';
 
 part 'login_event.dart';

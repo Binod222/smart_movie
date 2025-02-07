@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:smart_movie/features/home/presentation/view/bottom_view/about_us_view.dart';
 import 'package:smart_movie/features/home/presentation/view/bottom_view/home_view.dart';
 import 'package:smart_movie/features/home/presentation/view/bottom_view/profile_view.dart';
 
@@ -18,11 +17,7 @@ class HomeState extends Equatable {
     return HomeState(
       selectedIndex: 0,
       views: [
-        HomeView(),
-        const Center(
-          child: Text('Tickets'),
-        ),
-        AboutView(),
+        HomePage(),
         const ProfilePage(),
       ],
     );

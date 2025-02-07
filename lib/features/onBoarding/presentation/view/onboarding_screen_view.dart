@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:smart_movie/features/auth/presentation/view/login_screen.dart';
 
@@ -104,7 +103,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   children: [
                     TextButton(
                       onPressed: () {
-                        _pageController.jumpToPage(onboardingData.length - 1);
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => LoginPage(),
+                          ),
+                        );
                       },
                       child: const Text(
                         'Skip',

@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -8,29 +11,69 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _firstNameController = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
-  final TextEditingController _addressController = TextEditingController();
   bool _isEditing = false;
+  File? _profileImage; // Holds the selected image
 
   @override
   void initState() {
     super.initState();
-    // Pre-fill user data (replace with dynamic data if available)
-    _nameController.text = "bibek";
-    _emailController.text = "bibek.kr@example.com";
+    _firstNameController.text = "Binod";
+    _lastNameController.text = "Kumar";
     _phoneController.text = "123-456-7890";
-    _addressController.text = "kathmandu-Nepal";
   }
 
   @override
   void dispose() {
-    _nameController.dispose();
-    _emailController.dispose();
+    _firstNameController.dispose();
+    _lastNameController.dispose();
     _phoneController.dispose();
-    _addressController.dispose();
     super.dispose();
+  }
+
+  // Function to pick image from gallery or camera
+  Future<void> _pickImage(ImageSource source) async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: source);
+
+    if (pickedFile != null) {
+      setState(() {
+        _profileImage = File(pickedFile.path);
+      });
+    }
+  }
+
+  // Show options to pick from camera or gallery
+  void _showImagePickerDialog() {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return SafeArea(
+          child: Wrap(
+            children: [
+              ListTile(
+                leading: const Icon(Icons.camera),
+                title: const Text("Take a Photo"),
+                onTap: () {
+                  _pickImage(ImageSource.camera);
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.photo_library),
+                title: const Text("Choose from Gallery"),
+                onTap: () {
+                  _pickImage(ImageSource.gallery);
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 
   @override
@@ -40,7 +83,6 @@ class _ProfilePageState extends State<ProfilePage> {
         title: const Text("Profile"),
         backgroundColor: Colors.green,
         actions: [
-          // Edit button in app bar
           IconButton(
             icon: Icon(_isEditing ? Icons.check : Icons.edit),
             onPressed: () {
@@ -58,32 +100,30 @@ class _ProfilePageState extends State<ProfilePage> {
             // Profile Picture
             Center(
               child: Stack(
-                clipBehavior: Clip.none, // Allows for floating elements
+                clipBehavior: Clip.none,
                 children: [
                   CircleAvatar(
                     radius: 60,
-                    backgroundImage: AssetImage(
-                        'assets/images/bus4.jpg'), // Replace with dynamic user's profile image
+                    backgroundColor:
+                        Colors.grey[300], // Default background color
+                    backgroundImage: _profileImage != null
+                        ? FileImage(_profileImage!) as ImageProvider
+                        : null, // No default image
+                    child: _profileImage == null
+                        ? const Icon(Icons.person,
+                            size: 60, color: Colors.white)
+                        : null, // Show person icon if no image is selected
                   ),
                   Positioned(
                     bottom: -10,
                     right: -10,
                     child: GestureDetector(
-                      onTap: () {
-                        // Add functionality for changing profile image (e.g. picking a new image)
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                              content: Text('Change Profile Picture!')),
-                        );
-                      },
+                      onTap: _showImagePickerDialog,
                       child: CircleAvatar(
                         radius: 20,
                         backgroundColor: Colors.green,
-                        child: const Icon(
-                          Icons.camera_alt,
-                          color: Colors.white,
-                          size: 20,
-                        ),
+                        child: const Icon(Icons.camera_alt,
+                            color: Colors.white, size: 20),
                       ),
                     ),
                   ),
@@ -92,21 +132,17 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
             const SizedBox(height: 20),
 
-            // User Information Fields
-            _buildTextField("Name", _nameController, _isEditing),
+            _buildTextField("First Name", _firstNameController, _isEditing),
             const SizedBox(height: 16),
-            _buildTextField("Email", _emailController, _isEditing),
+            _buildTextField("Last Name", _lastNameController, _isEditing),
             const SizedBox(height: 16),
             _buildTextField("Phone Number", _phoneController, _isEditing),
-            const SizedBox(height: 16),
-            _buildTextField("Address", _addressController, _isEditing),
             const SizedBox(height: 30),
 
-            // Update Profile Button
+            // Save Changes Button
             _isEditing
                 ? ElevatedButton(
                     onPressed: () {
-                      // Add functionality to save changes here
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text('Profile updated!')),
                       );
@@ -115,18 +151,15 @@ class _ProfilePageState extends State<ProfilePage> {
                       });
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors
-                          .green, // Use backgroundColor instead of primary
+                      backgroundColor: Colors.green,
                       padding: const EdgeInsets.symmetric(vertical: 12),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
-                    child: const Text(
-                      "Save Changes",
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
+                    child: const Text("Save Changes",
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold)),
                   )
                 : const SizedBox.shrink(),
 
@@ -135,23 +168,19 @@ class _ProfilePageState extends State<ProfilePage> {
             // Log Out Button
             ElevatedButton(
               onPressed: () {
-                // Log out functionality here
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text('Logging out...')),
                 );
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor:
-                    Colors.red, // Use backgroundColor instead of primary
+                backgroundColor: Colors.red,
                 padding: const EdgeInsets.symmetric(vertical: 12),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
-              child: const Text(
-                "Log Out",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
+              child: const Text("Log Out",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             ),
           ],
         ),
@@ -175,24 +204,15 @@ class _ProfilePageState extends State<ProfilePage> {
         prefixIcon: const Icon(Icons.edit, color: Colors.green),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(
-            color: Colors.green,
-            width: 1.0,
-          ),
+          borderSide: const BorderSide(color: Colors.green, width: 1.0),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(
-            color: Colors.green,
-            width: 1.5,
-          ),
+          borderSide: const BorderSide(color: Colors.green, width: 1.5),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(
-            color: Colors.green,
-            width: 1.0,
-          ),
+          borderSide: const BorderSide(color: Colors.green, width: 1.0),
         ),
       ),
     );

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:smart_movie/features/home/presentation/view/bottom_view/about_us_view.dart';
-import 'package:smart_movie/features/home/presentation/view/bottom_view/filter_view.dart';
+import 'package:smart_movie/features/home/presentation/view/bottom_view/favorite_view.dart';
+import 'package:smart_movie/features/home/presentation/view/bottom_view/home_view.dart';
 import 'package:smart_movie/features/home/presentation/view/bottom_view/profile_view.dart';
+
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
 
@@ -13,9 +14,8 @@ class _BottomNavigationViewState extends State<HomeView> {
   int _selectedIndex = 0;
 
   List<Widget> lstBottomScreen = [
-    HomeView(),
-    const AboutView(),
-    const FilterView(),
+    HomePage(),
+    const FavoriteView(),
     const ProfilePage(),
   ];
 
@@ -35,12 +35,8 @@ class _BottomNavigationViewState extends State<HomeView> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.info),
-            label: 'About',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.filter),
-            label: 'Filter',
+            icon: Icon(Icons.favorite),
+            label: 'Favorite',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
