@@ -5,8 +5,6 @@ class UserEntity extends Equatable {
   final String fullName;
   final String email;
   final String password;
-  final String phone;
-  final String address;
   final String role;
   final String? avatar;
 
@@ -15,8 +13,6 @@ class UserEntity extends Equatable {
     required this.fullName,
     required this.email,
     required this.password,
-    required this.phone,
-    required this.address,
     required this.role,
     this.avatar,
   });
@@ -27,8 +23,6 @@ class UserEntity extends Equatable {
         fullName = '_empty.fullname',
         email = '_empty.email',
         password = '_empty.password',
-        phone = '_empty.phone',
-        address = '_empty.address',
         role = '_empty.role',
         avatar = '_empty.avatar';
 

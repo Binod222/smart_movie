@@ -1,4 +1,3 @@
-
 import 'package:hive_flutter/adapters.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:smart_movie/app/constants/hive_table_constant.dart';
@@ -8,7 +7,7 @@ class HiveService {
   Future<void> init() async {
     // Initialize the database
     var directory = await getApplicationDocumentsDirectory();
-    var path = '${directory.path}lets_go.db';
+    var path = '${directory.path}smart_movie.db';
 
     Hive.init(path);
 

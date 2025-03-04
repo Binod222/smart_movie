@@ -7,7 +7,6 @@ import 'package:smart_movie/features/auth/data/dto/get_all_user_dto.dart';
 import 'package:smart_movie/features/auth/data/model/user_api_model.dart';
 import 'package:smart_movie/features/auth/domain/entity/user_entity.dart';
 
-
 class UserRemoteDataSource implements IUserDataSource {
   final Dio _dio;
   UserRemoteDataSource(this._dio);
@@ -50,7 +49,7 @@ class UserRemoteDataSource implements IUserDataSource {
         throw Exception(response.statusMessage);
       }
     } on DioException catch (e) {
-      throw Exception(e); 
+      throw Exception(e);
     } catch (e) {
       throw Exception(e);
     }
@@ -68,7 +67,7 @@ class UserRemoteDataSource implements IUserDataSource {
       );
 
       if (response.statusCode == 200) {
-        final token = response.data['user']['token'] as String;
+        final token = response.data['token'] as String;
         return token;
       } else {
         throw Exception(response.statusMessage);
@@ -94,8 +93,11 @@ class UserRemoteDataSource implements IUserDataSource {
       );
 
       Response response = await _dio.post(
-        ApiEndpoints.uploadImage,
+        ApiEndpoints.avatarUpload,
         data: formData,
+        options: Options(headers: {
+          "Content-Type": "multipart/form-data",
+        }),
       );
 
       if (response.statusCode == 200) {

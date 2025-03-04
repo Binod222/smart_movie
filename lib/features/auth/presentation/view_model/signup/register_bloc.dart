@@ -7,7 +7,6 @@ import 'package:smart_movie/core/common/snackbar/my_snackbar.dart';
 import 'package:smart_movie/features/auth/domain/use_case/create_user_usecase.dart';
 import 'package:smart_movie/features/auth/domain/use_case/upload_image_usecase.dart';
 
-
 part 'register_event.dart';
 part 'register_state.dart';
 
@@ -34,8 +33,6 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
           fullName: event.fullName,
           email: event.email,
           password: event.password,
-          phone: '',
-          address: '',
           avatar: event.avatar,
           role: "user"),
     );
@@ -67,18 +64,4 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       },
     );
   }
-
-// // Handle NavigateLoginScreenEvent
-//   Future<void> _onNavigateLoginScreenEvent(
-//       NavigateLoginScreenEvent event, Emitter<RegisterState> emit) async {
-//     Navigator.push(
-//       event.context,
-//       MaterialPageRoute(
-//         builder: (context) => BlocProvider.value(
-//           value: _loginBloc,
-//           child: event.destination,
-//         ),
-//       ),
-//     );
-//   }
 }

@@ -2,17 +2,14 @@ import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:smart_movie/features/auth/domain/entity/user_entity.dart';
 
-
 @JsonSerializable()
 class UserApiModel extends Equatable {
   @JsonKey(name: '_id')
   final String? userId;
-  @JsonKey(name: 'name')
+  @JsonKey(name: 'username')
   final String fullName;
   final String email;
   final String password;
-  final String phone;
-  final String address;
   final String role;
   final String? avatar;
 
@@ -21,8 +18,6 @@ class UserApiModel extends Equatable {
     required this.fullName,
     required this.email,
     required this.password,
-    required this.phone,
-    required this.address,
     required this.role,
     this.avatar,
   });
@@ -32,8 +27,6 @@ class UserApiModel extends Equatable {
         fullName = '',
         email = '',
         password = '',
-        phone = '',
-        address = '',
         role = '',
         avatar = '';
 
@@ -41,11 +34,9 @@ class UserApiModel extends Equatable {
   factory UserApiModel.fromJson(Map<String, dynamic> json) {
     return UserApiModel(
       userId: json['_id'],
-      fullName: json['name'],
+      fullName: json['username'],
       email: json['email'],
       password: json['password'],
-      phone: json['phone'],
-      address: json['address'],
       role: json['role'],
       avatar: json['avatar'],
     );
@@ -54,11 +45,9 @@ class UserApiModel extends Equatable {
   // To JSON
   Map<String, dynamic> toJson() {
     return {
-      'name': fullName,
+      'username': fullName,
       'email': email,
       'password': password,
-      'phone': phone,
-      'address': address,
       'role': role,
       'avatar': avatar,
     };
@@ -70,8 +59,6 @@ class UserApiModel extends Equatable {
         fullName: fullName,
         email: email,
         password: password,
-        phone: phone,
-        address: address,
         role: role,
         avatar: avatar,
       );
@@ -81,8 +68,6 @@ class UserApiModel extends Equatable {
         fullName: entity.fullName,
         email: entity.email,
         password: entity.password,
-        phone: entity.phone,
-        address: entity.address,
         role: entity.role,
         avatar: entity.avatar,
       );
@@ -97,8 +82,6 @@ class UserApiModel extends Equatable {
         fullName,
         email,
         password,
-        phone,
-        address,
         role,
         avatar,
       ];

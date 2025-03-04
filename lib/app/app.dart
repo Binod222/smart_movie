@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_movie/app/di/di.dart';
@@ -31,7 +30,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Revive Reads',
+        title: 'Smart Movies',
         theme: getApplicationTheme(),
         home: const SplashView(),
       ),

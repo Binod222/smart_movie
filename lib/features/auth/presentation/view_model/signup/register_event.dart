@@ -21,6 +21,7 @@ class RegisterUserEvent extends RegisterEvent {
   final String email;
   final String password;
   final String? avatar;
+  final String confirmPassword;
 
   const RegisterUserEvent({
     required this.context,
@@ -28,6 +29,7 @@ class RegisterUserEvent extends RegisterEvent {
     required this.email,
     required this.password,
     this.avatar,
+    required this.confirmPassword,
   });
 }
 

@@ -21,7 +21,7 @@ class _ProfilePageState extends State<ProfilePage> {
   void initState() {
     super.initState();
     _firstNameController.text = "Binod";
-    _lastNameController.text = "Kumar";
+    _lastNameController.text = "khadka";
     _phoneController.text = "123-456-7890";
   }
 
