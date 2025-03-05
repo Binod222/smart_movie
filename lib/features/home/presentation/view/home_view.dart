@@ -15,7 +15,7 @@ class _BottomNavigationViewState extends State<HomeView> {
 
   List<Widget> lstBottomScreen = [
     HomePage(),
-    const FavoriteView(),
+    const FavoritePage(),
     const ProfilePage(),
   ];
 

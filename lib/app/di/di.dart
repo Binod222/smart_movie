@@ -1,4 +1,3 @@
-
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -16,7 +15,10 @@ import 'package:smart_movie/features/auth/presentation/view_model/login/login_bl
 import 'package:smart_movie/features/auth/presentation/view_model/signup/register_bloc.dart';
 import 'package:smart_movie/features/home/presentation/view_model/home_cubit.dart';
 import 'package:smart_movie/features/onBoarding/presentation/view_model/onboarding_cubit.dart';
+import 'package:smart_movie/features/profile/data/repositories/profile_repository.dart';
+import 'package:smart_movie/features/profile/presentation/view_model/profile_bloc.dart';
 import 'package:smart_movie/features/splash/presentation/view_model/splash_cubit.dart';
+
 final getIt = GetIt.instance;
 
 Future<void> initDependencies() async {
@@ -123,3 +125,12 @@ _initSplashScreenDependencies() async {
     () => SplashCubit(getIt<OnboardingCubit>()),
   );
 }
+
+// _initProfileDependencies() async {
+//   // Register ProfileRepository first
+//   getIt.registerLazySingleton<ProfileRepository>(() => ProfileRepository());
+
+//   getIt.registerFactory<ProfileBloc>(
+//     () => ProfileBloc(profileRepository: getIt<ProfileRepository>()),
+//   );
+// }

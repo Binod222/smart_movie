@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:smart_movie/features/auth/presentation/view/login_screen.dart'; // Import your LoginPage
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -11,25 +12,23 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  final TextEditingController _firstNameController = TextEditingController();
-  final TextEditingController _lastNameController = TextEditingController();
-  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+
   bool _isEditing = false;
   File? _profileImage; // Holds the selected image
 
   @override
   void initState() {
     super.initState();
-    _firstNameController.text = "Binod";
-    _lastNameController.text = "khadka";
-    _phoneController.text = "123-456-7890";
+    _usernameController.text = "binod_khadka";
+    _emailController.text = "binod@example.com";
   }
 
   @override
   void dispose() {
-    _firstNameController.dispose();
-    _lastNameController.dispose();
-    _phoneController.dispose();
+    _usernameController.dispose();
+    _emailController.dispose();
     super.dispose();
   }
 
@@ -54,7 +53,7 @@ class _ProfilePageState extends State<ProfilePage> {
           child: Wrap(
             children: [
               ListTile(
-                leading: const Icon(Icons.camera),
+                leading: const Icon(Icons.camera, color: Colors.green),
                 title: const Text("Take a Photo"),
                 onTap: () {
                   _pickImage(ImageSource.camera);
@@ -62,7 +61,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 },
               ),
               ListTile(
-                leading: const Icon(Icons.photo_library),
+                leading: const Icon(Icons.photo_library, color: Colors.green),
                 title: const Text("Choose from Gallery"),
                 onTap: () {
                   _pickImage(ImageSource.gallery);
@@ -76,12 +75,25 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
+  // Handle logout functionality
+  void _logout() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Logging out...')),
+    );
+
+    // Navigate to login page after logout
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (_) => const LoginPage()));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Profile"),
+        title: const Text("Profile",
+            style: TextStyle(fontWeight: FontWeight.bold)),
         backgroundColor: Colors.green,
+        elevation: 4.0,
         actions: [
           IconButton(
             icon: Icon(_isEditing ? Icons.check : Icons.edit),
@@ -97,7 +109,7 @@ class _ProfilePageState extends State<ProfilePage> {
         padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: [
-            // Profile Picture
+            // Profile Picture with styling
             Center(
               child: Stack(
                 clipBehavior: Clip.none,
@@ -132,11 +144,10 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
             const SizedBox(height: 20),
 
-            _buildTextField("First Name", _firstNameController, _isEditing),
+            // Username and Email TextFields
+            _buildTextField("Username", _usernameController, _isEditing),
             const SizedBox(height: 16),
-            _buildTextField("Last Name", _lastNameController, _isEditing),
-            const SizedBox(height: 16),
-            _buildTextField("Phone Number", _phoneController, _isEditing),
+            _buildTextField("Email", _emailController, _isEditing),
             const SizedBox(height: 30),
 
             // Save Changes Button
@@ -156,6 +167,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
+                      elevation: 4,
                     ),
                     child: const Text("Save Changes",
                         style: TextStyle(
@@ -165,19 +177,16 @@ class _ProfilePageState extends State<ProfilePage> {
 
             const SizedBox(height: 30),
 
-            // Log Out Button
+            // Log Out Button with enhanced style
             ElevatedButton(
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Logging out...')),
-                );
-              },
+              onPressed: _logout,
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.red,
                 padding: const EdgeInsets.symmetric(vertical: 12),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
+                elevation: 4,
               ),
               child: const Text("Log Out",
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
@@ -188,32 +197,38 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
-  // TextField widget for editable user info
+  // TextField widget for editable user info with styling
   Widget _buildTextField(
       String label, TextEditingController controller, bool isEditable) {
-    return TextField(
-      controller: controller,
-      enabled: isEditable,
-      decoration: InputDecoration(
-        labelText: label,
-        labelStyle: const TextStyle(color: Colors.black),
-        hintText: label,
-        hintStyle: const TextStyle(color: Colors.grey),
-        filled: true,
-        fillColor: Colors.white,
-        prefixIcon: const Icon(Icons.edit, color: Colors.green),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: Colors.green, width: 1.0),
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.shade300,
+            blurRadius: 6,
+            offset: Offset(0, 2),
+          ),
+        ],
+      ),
+      child: TextField(
+        controller: controller,
+        enabled: isEditable,
+        decoration: InputDecoration(
+          labelText: label,
+          labelStyle: const TextStyle(color: Colors.green),
+          hintText: label,
+          hintStyle: const TextStyle(color: Colors.grey),
+          filled: true,
+          fillColor: Colors.white,
+          prefixIcon: const Icon(Icons.edit, color: Colors.green),
+          border: InputBorder.none,
+          focusedBorder: InputBorder.none,
+          enabledBorder: InputBorder.none,
         ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: Colors.green, width: 1.5),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: Colors.green, width: 1.0),
-        ),
+        style: const TextStyle(color: Colors.black, fontSize: 16),
       ),
     );
   }

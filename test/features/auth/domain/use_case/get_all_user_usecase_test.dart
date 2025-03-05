@@ -20,8 +20,6 @@ void main() {
     fullName: 'fullName',
     email: 'email',
     password: 'password',
-    phone: 'phone',
-    address: 'address',
     role: 'user',
   );
 
@@ -30,8 +28,6 @@ void main() {
     fullName: 'fullName',
     email: 'email',
     password: 'password',
-    phone: 'phone',
-    address: 'address',
     role: 'user',
   );
 
