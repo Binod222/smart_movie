@@ -10,6 +10,7 @@ class FavoritePage extends StatelessWidget {
       {
         "title": "Inception",
         "year": "2010",
+        "genre": "Sci-Fi, Thriller",
         "poster": "assets/images/inception.jpg", // Local image asset
         "description":
             "A thief who enters the dreams of others to steal secrets must plant an idea into a target's subconscious."
@@ -17,6 +18,7 @@ class FavoritePage extends StatelessWidget {
       {
         "title": "Interstellar",
         "year": "2014",
+        "genre": "Sci-Fi, Adventure",
         "poster": "assets/images/interstellar.jpg", // Local image asset
         "description":
             "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival."
@@ -24,6 +26,7 @@ class FavoritePage extends StatelessWidget {
       {
         "title": "The Dark Knight",
         "year": "2008",
+        "genre": "Action, Crime",
         "poster": "assets/images/dark_knight.jpg", // Local image asset
         "description":
             "Batman faces the Joker, a criminal mastermind who wants to plunge Gotham into anarchy."
@@ -57,6 +60,7 @@ class FavoritePage extends StatelessWidget {
                       builder: (context) => MovieDetailPage(
                         title: favoriteMovies[index]["title"]!,
                         year: favoriteMovies[index]["year"]!,
+                        genre: favoriteMovies[index]["genre"]!,
                         poster: favoriteMovies[index]["poster"]!,
                         description: favoriteMovies[index]["description"]!,
                       ),
